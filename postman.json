@@ -109,6 +109,54 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "sell",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/sell?clientFrom=1&clientTo=10000&product=1&quantity=10&price=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sell"
+					],
+					"query": [
+						{
+							"key": "clientFrom",
+							"value": "1"
+						},
+						{
+							"key": "clientTo",
+							"value": "10000"
+						},
+						{
+							"key": "product",
+							"value": "1"
+						},
+						{
+							"key": "quantity",
+							"value": "10"
+						},
+						{
+							"key": "price",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

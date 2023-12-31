@@ -31,6 +31,8 @@ public class SellHandler implements HttpHandler {
             results.add(result);
         }
 
+        BuyHandler.save(results, "sell");
+
         BuyHandler.response(exchange, results);
     }
 }

@@ -4,7 +4,11 @@ import com.iasia.processor.BuyResult;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +35,8 @@ public class BuyHandler implements HttpHandler {
 
             results.add(result);
         }
+
+        save(results, "buy");
 
         response(exchange, results);
     }
@@ -75,7 +81,7 @@ public class BuyHandler implements HttpHandler {
         long sum = 0;
 
         for (ProcessResult<T> result : results) {
-            sum += result.elapsed;
+            sum += result.elapsed();
         }
 
         long mean = sum / results.size();
@@ -84,5 +90,19 @@ public class BuyHandler implements HttpHandler {
                 "total count: " + results.size() + "\r\n"
                         + "total elapsed: " + (sum / 1_000_000) + "ms\r\n"
                         + "mean elapsed: " + mean + "ns");
+    }
+
+    public static <T> void save(List<ProcessResult<T>> results, String name) {
+        try (var writer = new FileWriter("..\\result\\" + name + ".csv")) {
+            writer.write("result,elapsed_ns\r\n");
+
+            for (var result : results) {
+                writer.write(
+                        result.result().toString() + "," +
+                        result.elapsed() + "\r\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
