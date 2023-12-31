@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "e6c9c931-945a-41b4-93b3-c2220433f303",
+		"name": "Java21SpeedTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13270871"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/client?clientFrom=1&clientTo=10000&balance=10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"client"
+					],
+					"query": [
+						{
+							"key": "clientFrom",
+							"value": "1"
+						},
+						{
+							"key": "clientTo",
+							"value": "10000"
+						},
+						{
+							"key": "balance",
+							"value": "10000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/buy?clientFrom=1&clientTo=10000&product=1&quantity=10&price=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buy"
+					],
+					"query": [
+						{
+							"key": "clientFrom",
+							"value": "1"
+						},
+						{
+							"key": "clientTo",
+							"value": "10000"
+						},
+						{
+							"key": "product",
+							"value": "1"
+						},
+						{
+							"key": "quantity",
+							"value": "10"
+						},
+						{
+							"key": "price",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
