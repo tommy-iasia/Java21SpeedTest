@@ -12,28 +12,28 @@ public class Consumer implements AutoCloseable {
     public static Consumer create() throws IOException {
         final var consumer = new Consumer();
 
-        try (final var server = new ServerSocket(8081)) {
-            new Thread(() -> {
-                try {
-                    consumer.server = server.accept();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+        var server = new ServerSocket(8081);
+
+        new Thread(() -> {
+            try {
+                consumer.server = server.accept();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+            var buffer = new byte[1024 * 1024];
+            try {
+                var stream = consumer.server.getInputStream();
+                while (stream.read(buffer) != -1) {
+                    buffer[0] = 1;
                 }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
-
-                var buffer = new byte[1024 * 1024];
-                try {
-                    var stream = consumer.server.getInputStream();
-                    while (stream.read(buffer) != -1) {
-                        buffer[0] = 1;
-                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-            consumer.client = new Socket("localhost", 8081);
-        }
+        consumer.client = new Socket("localhost", 8081);
 
         return consumer;
     }

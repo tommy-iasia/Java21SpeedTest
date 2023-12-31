@@ -16,22 +16,22 @@ public class Processor {
     }
 
     public ProcessResult<BuyResult> buy(int clientCode, int productCode, int quantity, int price) {
-        long startTime = System.nanoTime();
+        var startTime = System.nanoTime();
 
-        BuyResult result = handler.buy(clientCode, productCode, quantity, price);
+        var result = handler.buy(clientCode, productCode, quantity, price);
 
-        long endTime = System.nanoTime();
+        var endTime = System.nanoTime();
 
-        return new ProcessResult(result, endTime - startTime);
+        return new ProcessResult<>(result, endTime - startTime);
     }
 
     public ProcessResult<SellResult> sell(int clientCode, int productCode, int quantity, int price) {
-        long startTime = System.nanoTime();
+        var startTime = System.nanoTime();
 
-        SellResult result = handler.sell(clientCode, productCode, quantity, price);
+        var result = handler.sell(clientCode, productCode, quantity, price);
 
-        long endTime = System.nanoTime();
+        var endTime = System.nanoTime();
 
-        return new ProcessResult(result, endTime - startTime);
+        return new ProcessResult<>(result, endTime - startTime);
     }
 }
